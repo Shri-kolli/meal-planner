@@ -30,24 +30,32 @@ def generate_meal_plan():
         'Sunday': {}
     }
 
+    used_breakfasts = {item: 0 for item in breakfast_items}
     used_main_meals = {item: 0 for item in main_meals_items}
+    previous_lunch_item = None
+    previous_dinner_item = None
 
     for day in meals:
-        meals[day]['Breakfast'] = random.choice(breakfast_items)
+        breakfast_item = None
+        while not breakfast_item or used_breakfasts[breakfast_item] >= 2:
+            breakfast_item = random.choice(breakfast_items)
+        meals[day]['Breakfast'] = breakfast_item
+        used_breakfasts[breakfast_item] += 1
 
-        # Ensure no item appears more than twice a week and not repeated on the same day
         lunch_item = None
-        while not lunch_item or used_main_meals[lunch_item] >= 2:
+        while not lunch_item or used_main_meals[lunch_item] >= 2 or lunch_item == previous_lunch_item:
             lunch_item = random.choice(main_meals_items)
         meals[day]['Lunch'] = lunch_item
         used_main_meals[lunch_item] += 1
+        previous_lunch_item = lunch_item
 
         dinner_item = None
-        while not dinner_item or dinner_item == lunch_item or used_main_meals[dinner_item] >= 2:
+        while not dinner_item or dinner_item == lunch_item or used_main_meals[dinner_item] >= 2 or dinner_item == previous_dinner_item:
             dinner_item = random.choice(main_meals_items)
         meals[day]['Dinner'] = dinner_item
         used_main_meals[dinner_item] += 1
-    
+        previous_dinner_item = dinner_item
+
     return meals
 
 @app.route('/')
