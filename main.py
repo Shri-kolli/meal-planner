@@ -44,9 +44,8 @@ def generate_meal_plan():
 
 @app.route('/')
 def index():
-    meal_plan = MealPlan.query.first()
-    if meal_plan:
-        meal_plan = meal_plan.meal_data  # Retrieve the meal plan from the database if it exists
+    meal_plan_entry = MealPlan.query.first()
+    meal_plan = meal_plan_entry.meal_data if meal_plan_entry else None
     return render_template('index.html', meal_plan=meal_plan)
 
 @app.route('/generate', methods=['POST'])
