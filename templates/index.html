@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Meal Planner</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-    <h1>Weekly Meal Planner</h1>
-    <form action="/generate" method="post">
-      <button type="submit">Generate Meal Plan</button>
-    </form>
+    <div class="background">
+      <h1>Weekly Meal Planner</h1>
+      <form action="/generate" method="post">
+        <button type="submit">Generate Meal Plan</button>
+      </form>
+    </div>
   </body>
 </html>
