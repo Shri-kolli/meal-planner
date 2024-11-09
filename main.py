@@ -3,13 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 import random
 
 app = Flask(__name__)
-app.secret_key = 'mini@1243'
+app.secret_key = 'mini@1357'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mealplans.db'
 db = SQLAlchemy(app)
 
 # Sample lists
-breakfast_items = ['Pancakes', 'Oatmeal', 'Smoothie']
-main_meals_items = ['Salad', 'Sandwich', 'Sushi', 'Pizza', 'Pasta', 'Stir-fry']
+breakfast_items = ['dosa', 'idli', 'avalakki', 'uppittu', 'cornflakes &fruits', 'shavige-uppittu', 'bread-uppittu']
+main_meals_items = ['brinjal/cut-badane-kayi', 'capsicum', 'cabbage', 'hiri-kayi', 'bhendi', 'beans', 'brinjal/cut-badane-kayi', 'pitla', 'kalu-palya', 'udara-bele', 'kalu-palya']
 
 # 4-digit PIN
 PIN = '1357'
@@ -32,8 +32,13 @@ def generate_meal_plan():
 
     for day in meals:
         meals[day]['Breakfast'] = random.choice(breakfast_items)
-        meals[day]['Lunch'] = random.choice(main_meals_items)
-        meals[day]['Dinner'] = random.choice(main_meals_items)
+
+        lunch_item = random.choice(main_meals_items)
+        meals[day]['Lunch'] = lunch_item
+
+        dinner_items = main_meals_items.copy()
+        dinner_items.remove(lunch_item)
+        meals[day]['Dinner'] = random.choice(dinner_items)
     
     return meals
 
