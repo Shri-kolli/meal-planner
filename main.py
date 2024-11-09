@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mealplans.db'
 db = SQLAlchemy(app)
 
 # Sample lists
-breakfast_items = ['dosa', 'idli', 'avalakki', 'uppittu', 'cornflakes &fruits', 'shavige-uppittu', 'bread-uppittu']
+breakfast_items = ['dosa', 'idli', 'avalakki', 'uppittu', 'cornflakes & fruits', 'shavige-uppittu', 'bread-uppittu']
 main_meals_items = ['brinjal/cut-badane-kayi', 'capsicum', 'cabbage', 'hiri-kayi', 'bhendi', 'beans', 'brinjal/cut-badane-kayi', 'pitla', 'kalu-palya', 'udara-bele', 'kalu-palya']
 
 # 4-digit PIN
@@ -60,7 +60,7 @@ def generate():
             new_plan = MealPlan(meal_data=meal_plan)
             db.session.add(new_plan)
         db.session.commit()  # Store the meal plan in the database
-        return render_template('result.html', meal_plan=meal_plan)
+        return render_template('index.html', meal_plan=meal_plan)
     else:
         return 'Invalid PIN. Please try again.'
 

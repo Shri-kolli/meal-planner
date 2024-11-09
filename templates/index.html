@@ -25,16 +25,11 @@
         </tr>
         {% endfor %}
       </table>
+      {% endif %}
       <form action="/generate" method="post">
         <input type="password" name="pin" placeholder="Enter 4-digit PIN" required>
         <button type="submit">Generate New Meal Plan</button>
       </form>
-      {% else %}
-      <form action="/generate" method="post">
-        <input type="password" name="pin" placeholder="Enter 4-digit PIN" required>
-        <button type="submit">Generate Meal Plan</button>
-      </form>
-      {% endif %}
     </div>
   </body>
 </html>
