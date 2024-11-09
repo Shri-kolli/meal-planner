@@ -29,32 +29,30 @@ th, td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
+  font-size: 1.5em; /* Increase font size by 1.5 times */
+  font-weight: bold; /* Make text bold */
 }
 
 th {
-  font-size: 1.5em;
-  font-weight: bold;
   color: #333;
 }
 
 td {
-  font-size: 1.2em;
   color: #555;
 }
 
 th.day-header {
-  font-size: 1.8em;
   color: #000;
 }
 
 /* Media query for mobile devices */
 @media (max-width: 600px) {
   th, td {
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 8px;
   }
 
   th.day-header {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 }
