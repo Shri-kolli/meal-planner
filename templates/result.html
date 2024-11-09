@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Meal Plan</title>
+  </head>
+  <body>
+    <h1>Weekly Meal Plan</h1>
+    <table border="1">
+      <tr>
+        <th>Day</th>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+      </tr>
+      {% for day, meals in meal_plan.items() %}
+      <tr>
+        <td>{{ day }}</td>
+        <td>{{ meals['Breakfast'] }}</td>
+        <td>{{ meals['Lunch'] }}</td>
+        <td>{{ meals['Dinner'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="/">Generate Again</a>
+  </body>
+</html>
