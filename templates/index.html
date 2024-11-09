@@ -9,16 +9,16 @@
     <div class="background">
       <h1>Weekly Meal Planner</h1>
       {% if meal_plan %}
-      <table border="1">
+      <table>
         <tr>
-          <th>Day</th>
+          <th class="day-header">Day</th>
           <th>Breakfast</th>
           <th>Lunch</th>
           <th>Dinner</th>
         </tr>
         {% for day, meals in meal_plan.items() %}
         <tr>
-          <td>{{ day }}</td>
+          <td class="day-header">{{ day }}</td>
           <td>{{ meals['Breakfast'] }}</td>
           <td>{{ meals['Lunch'] }}</td>
           <td>{{ meals['Dinner'] }}</td>
