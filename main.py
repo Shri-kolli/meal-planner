@@ -65,5 +65,7 @@ def generate():
         return 'Invalid PIN. Please try again.'
 
 if __name__ == '__main__':
+    print("Creating database tables...")
     db.create_all()  # Create the database tables
+    print("Tables created successfully.")
     app.run(debug=True)
