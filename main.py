@@ -32,25 +32,30 @@ def generate_meal_plan():
 
     used_breakfasts = {item: 0 for item in breakfast_items}
     used_main_meals = {item: 0 for item in main_meals_items}
+    previous_breakfast_item = None
     previous_lunch_item = None
     previous_dinner_item = None
 
     for day in meals:
+        # Assign breakfast while ensuring no repetition on consecutive days and not more than twice a week
         breakfast_item = None
-        while not breakfast_item or used_breakfasts[breakfast_item] >= 2:
+        while not breakfast_item or used_breakfasts[breakfast_item] >= 2 or breakfast_item == previous_breakfast_item:
             breakfast_item = random.choice(breakfast_items)
         meals[day]['Breakfast'] = breakfast_item
         used_breakfasts[breakfast_item] += 1
+        previous_breakfast_item = breakfast_item
 
+        # Assign lunch while ensuring no repetition on consecutive days and not more than twice a week
         lunch_item = None
-        while not lunch_item or used_main_meals[lunch_item] >= 2 or lunch_item == previous_lunch_item:
+        while not lunch_item or used_main_meals[lunch_item] >= 2 or lunch_item == previous_lunch_item or lunch_item == previous_dinner_item:
             lunch_item = random.choice(main_meals_items)
         meals[day]['Lunch'] = lunch_item
         used_main_meals[lunch_item] += 1
         previous_lunch_item = lunch_item
 
+        # Assign dinner while ensuring no repetition on consecutive days and not more than twice a week
         dinner_item = None
-        while not dinner_item or dinner_item == lunch_item or used_main_meals[dinner_item] >= 2 or dinner_item == previous_dinner_item:
+        while not dinner_item or dinner_item == lunch_item or used_main_meals[dinner_item] >= 2 or dinner_item == previous_lunch_item or dinner_item == previous_dinner_item:
             dinner_item = random.choice(main_meals_items)
         meals[day]['Dinner'] = dinner_item
         used_main_meals[dinner_item] += 1
