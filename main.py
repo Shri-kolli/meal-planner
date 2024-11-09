@@ -30,15 +30,23 @@ def generate_meal_plan():
         'Sunday': {}
     }
 
+    used_main_meals = {item: 0 for item in main_meals_items}
+
     for day in meals:
         meals[day]['Breakfast'] = random.choice(breakfast_items)
 
-        lunch_item = random.choice(main_meals_items)
+        # Ensure no item appears more than twice a week and not repeated on the same day
+        lunch_item = None
+        while not lunch_item or used_main_meals[lunch_item] >= 2:
+            lunch_item = random.choice(main_meals_items)
         meals[day]['Lunch'] = lunch_item
+        used_main_meals[lunch_item] += 1
 
-        dinner_items = main_meals_items.copy()
-        dinner_items.remove(lunch_item)
-        meals[day]['Dinner'] = random.choice(dinner_items)
+        dinner_item = None
+        while not dinner_item or dinner_item == lunch_item or used_main_meals[dinner_item] >= 2:
+            dinner_item = random.choice(main_meals_items)
+        meals[day]['Dinner'] = dinner_item
+        used_main_meals[dinner_item] += 1
     
     return meals
 
